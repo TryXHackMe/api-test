@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",                      // Menentukan target JavaScript
+    "module": "commonjs",                    // Module system
+    "rootDir": "./src",                      // Folder kode TypeScript Anda
+    "outDir": "./dist",                      // Folder hasil build JavaScript
+    "strict": true,                          // Aktifkan pengecekan tipe yang ketat
+    "moduleResolution": "node",              // Resolusi module sesuai dengan Node.js
+    "esModuleInterop": true,                 // Mempermudah impor library CommonJS
+    "skipLibCheck": true,                    // Lewati pengecekan tipe di file .d.ts
+    "forceConsistentCasingInFileNames": true // Konsistensi huruf besar/kecil
+  },
+  "include": ["src", "types"],                        // File yang di-compile (hanya di folder src)
+  "exclude": ["node_modules", "dist"]        // Folder yang tidak di-compile
+}

@@ -1,0 +1,20 @@
+# Mengabaikan node_modules (untuk proyek Node.js)
+node_modules/
+
+# Mengabaikan file log
+*.log
+
+# Mengabaikan file build atau output
+/dist/
+/build/
+
+# Mengabaikan file lingkungan .env (untuk konfigurasi rahasia)
+.env
+
+# Mengabaikan IDE atau editor file konfigurasi
+.vscode/
+.idea/
+
+# Mengabaikan sistem operasi file metadata (macOS/Windows)
+.DS_Store  # macOS
+Thumbs.db  # Windows
