@@ -13,7 +13,7 @@ export const verifyToken = (req:Request, res:Response, next:NextFunction) => {
     }
 
     try {
-        const decode = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as JwtPayload & { userId: number };
+        const decode = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as JwtPayload & { userId: number, role: string };
         req.user = decode;
         next()
     } catch(error) {

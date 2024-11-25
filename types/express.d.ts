@@ -4,7 +4,7 @@ import { toNamespacedPath } from "path";
 declare global {
     namespace Express {
         interface Request {
-            user?: JwtPayload & { userId: number };
+            user?: JwtPayload & { userId: number, role: string };
         }
     }
 }

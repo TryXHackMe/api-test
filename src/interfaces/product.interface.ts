@@ -6,7 +6,7 @@ export interface createProductDTO {
 } 
 
 export interface updateProductDTO {
-    id: number;
+    id?: number;
     name: string;
     description: string;
     price: number;
