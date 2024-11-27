@@ -2,9 +2,9 @@ import { Request, Response, NextFunction } from 'express'
 import response from '../utils/response';
 
 export const userValidate = (req: Request, res: Response, next: NextFunction) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
-    if(!name || !email || !password) {
+    if(!name || !email || !password || !role) {
         return response(res, 'Bad Request', 'field name email dan password tidak boleh kosong', 401);
     }
 

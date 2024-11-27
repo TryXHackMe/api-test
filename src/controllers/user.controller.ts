@@ -2,14 +2,15 @@ import { Request, Response } from 'express';
 import prisma from '../prisma/prismaClient';
 import bcrypt from 'bcrypt';
 import response from '../utils/response'
+import { User } from '../interfaces/user.interface';
 
 export const createUser = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
-  if(!name || !email || !password) return response(res, 'Bad Request', 'name, email, dan password tidak boleh kosong', 400)
+  const { name, email, password, role }:User  = req.body;
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
-      data: { name, email, password: hashedPassword },
+      data: { name, email, password: hashedPassword, role },
     });
     response(res, newUser, 'Data berhasil di tambahkan', 200);
   } catch (error) {

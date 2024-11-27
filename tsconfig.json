@@ -8,7 +8,8 @@
     "moduleResolution": "node",              // Resolusi module sesuai dengan Node.js
     "esModuleInterop": true,                 // Mempermudah impor library CommonJS
     "skipLibCheck": true,                    // Lewati pengecekan tipe di file .d.ts
-    "forceConsistentCasingInFileNames": true // Konsistensi huruf besar/kecil
+    "forceConsistentCasingInFileNames": true, // Konsistensi huruf besar/kecil
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": ["src", "types"],                        // File yang di-compile (hanya di folder src)
   "exclude": ["node_modules", "dist"]        // Folder yang tidak di-compile
