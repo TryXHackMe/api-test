@@ -6,7 +6,7 @@ import { createProductDTO, updateProductDTO } from "../interfaces/product.interf
 // Create product
 export const createProduct = async (req: Request, res: Response) => {
     const { name, description, price, stock }: createProductDTO = req.body;
-    const userId = req.user?.userId;
+    const userId = req.body.user.userId;
 
     if (!userId) {
         return response(res, 'Bad Request', 'User_id tidak ditemukan', 400);
@@ -26,8 +26,8 @@ export const createProduct = async (req: Request, res: Response) => {
 // Get product by ID
 export const getProductById = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const userId = req.user?.userId;
-    const role = req.user?.role;
+    const userId = req.body.user.userId;
+    const role = req.body.user.role;
 
     if (!id) {
         return response(res, 'Bad Request', 'ID produk tidak disediakan', 400);
@@ -53,8 +53,8 @@ export const getProductById = async (req: Request, res: Response) => {
 
 // Get all products
 export const getAllProducts = async (req: Request, res: Response) => {
-    const userId = req.user?.userId;
-    const role = req.user?.role;
+    const userId = req.body.user.userId;
+    const role = req.body.user.role;
 
     if (!userId) {
         return response(res, 'Unauthorized', 'Silakan login terlebih dahulu', 401);
@@ -80,8 +80,8 @@ export const getAllProducts = async (req: Request, res: Response) => {
 export const updateProduct = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const { name, description, price, stock }: updateProductDTO = req.body;
-    const userId = req.user?.userId;
-    const role = req.user?.role;
+    const userId = req.body.user.userId;
+    const role = req.body.user.role;
 
     if (!userId) {
         return response(res, 'Unauthorized', 'Silakan login terlebih dahulu', 401);
@@ -102,7 +102,9 @@ export const updateProduct = async (req: Request, res: Response) => {
             data: { name, description, price, stock }
         });
 
-        response(res, updatedProduct, 'Berhasil mengupdate produk', 200);
+        const data = { oldData: oldProduct, newData: updatedProduct }
+
+        response(res, data, 'Berhasil mengupdate produk', 200);
     } catch (error) {
         console.error(error);
         response(res, 'Internal Server Error', 'Terjadi kesalahan pada server', 500);
@@ -112,8 +114,8 @@ export const updateProduct = async (req: Request, res: Response) => {
 // Delete product
 export const deleteProduct = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const userId = req.user?.userId;
-    const role = req.user?.role;
+    const userId = req.body.user.userId;
+    const role = req.body.user.role;
 
     if (!id) {
         return response(res, 'Bad Request', 'ID produk tidak disediakan', 400);
