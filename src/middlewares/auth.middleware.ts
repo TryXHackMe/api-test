@@ -18,6 +18,11 @@ export const verifyToken = (req:Request, res:Response, next:NextFunction) => {
         next()
     } catch(error) {
         console.error(error)
+
+        if(error instanceof jwt.JsonWebTokenError) {
+            return response(res, 'Unauthorized', 'Token tidak valid atau telah kadaluwarsa', 401)
+        }
+
         return response(res, 'Internal Server Error', 'Terjadi Kesalahan Pada server', 500)
     }
 }

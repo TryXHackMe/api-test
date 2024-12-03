@@ -5,7 +5,9 @@ import response from '../utils/response';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export const registerUser = async(req: Request, res: Response) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
+    role ? role : 'customer';
+    console.log(`name ${name}, email ${email}, password ${password}`)
     
     try {
         const hashedPassword = await bcrypt.hash(password, 12);
